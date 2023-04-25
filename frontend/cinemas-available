@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/fontawesome-free-6.2.0-web/css/all.min.css">
+</head>
+
+<body>
+	
+	<!-- start -->
+	<section id="hà nội" class="hà nội">
+		<div class="container">
+			<div class="section-header">
+				<h2>hà nội</h2>
+				<p> Hãy xem các rạp quanh khu vực của bạn </p>
+			</div><!--/.section-header-->
+			<div class="rạp cgv">
+				<div class="row">
+					<div class=" col-md-4 col-sm-6">
+						<div class="rap-cgv-item">
+							<div class="rap-cgv-img">
+								<img src="assets/images/rạp cgv.jpg" alt="rap cgv image">
+								<div class="rap cgv-img-info">
+									<button onclick="window.location.href='#'">Best Service </button>
+									<div class="rap-cgv-image-icon-box">
+										<ul>
+											<li>
+												<div class="rap-cgv-image-icon">
+													<i class="fa fa-arrows-alt"></i>
+												</div>
+											</li>
+											<li>
+												<div class="rap-cgv-image-icon">
+													<i class="fa fa-bookmark-o"></i>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="rap cgv-txt bg-theme-1">
+								<h2><a href="#">Rạp CGV </a></h2>
+								<p class="danh gia rap cgv">
+									<span class="danh-gia-rap-cgv">4.8★ </span>
+										<a href="#"> >30000 lượt thích </a> 
+								</p>
+								<div class="icon rap cgv">
+									<div class="row">
+										<div class="col-sm-2">
+											<div class="cgv-icon-img">
+												<a href="#">
+													<img src="assets/images/clients/cgv.jpg" alt="cgv icon img">
+												</a>
+											</div>
+										</div>
+										<div class="col-sm-10">
+											<p>
+												-các Vincom <br>
+												-Mipec Tower<br>
+												-Center Point<br>
+												-...<br>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="rap-open-close-part">
+										<div class="row">
+											<div class="col-sm-5">
+												<button class="close-btn" onclick="window.location.href='#'">8h-24h</button>
+											</div>
+											<div class="col-sm-7">
+												<div class="rap-map-icon">
+													<a href="#"><i data-feather="map-pin"></i></a>
+													<a href="#"><i data-feather="upload"></i></a>
+													<a href="#"><i data-feather="heart"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="rap-bhd-item">
+								<div class="rap-bhd-img">
+									<img src="assets/images/explore/rạp bhd.jpg" alt="rap bhd image">
+									<div class="single-explore-img-info">
+										<button onclick="window.location.href='#'">phổ biến</button>
+										<div class="rap-bhd-image-icon-box">
+											<ul>
+												<li>
+													<div class="rap-bhd-image-icon">
+														<i class="fa fa-arrows-alt"></i>
+													</div>
+												</li>
+												<li>
+													<div class="rap-bhd-image-icon">
+														<i class="fa fa-bookmark-o"></i>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="rap-bhd-txt bg-theme-2">
+									<h2><a href="#">Rạp BHD </a></h2>
+									<p class="danh-gia-rap-bhd">
+										<span class="danh-gia-rap-bhd">4.2★</span>
+										<a href="#"> >20000 lượt thích</a> 
+										</span>
+									</p>
+									<div class="bhd-icon-img">
+										<div class="row">
+											<div class="col-sm-2">
+												<div class="bhd-icon-img">
+													<a href="#">
+														<img src="assets/images/clients/bhd.png" alt="bhd-icon-img">
+													</a>
+												</div>
+											</div>
+											<div class="col-sm-10">
+												<p>
+													-BHD Star Cầu Giấy <br>
+													-BHD Star Phạm Ngọc Thạch <br>
+													-BHD Star The Garden <br>
+													 
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="rap-open-close-part">
+										<div class="row">
+											<div class="col-sm-5">
+												<button class="close-btn open-btn" onclick="window.location.href='#'">8h-23h</button>
+											</div>
+											<div class="col-sm-7">
+												<div class="rap-map-icon">
+													<a href="#"><i data-feather="map-pin"></i></a>
+													<a href="#"><i data-feather="upload"></i></a>
+													<a href="#"><i data-feather="heart"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="rap-beta-item">
+								<div class="rap-beta-img">
+									<img src="assets/images/explore/rạp beta.jpg" alt="rap beta img">
+									<div class="rap-beta-img-info">
+										<button onclick="window.location.href='#'">giá rẻ</button>
+										<div class="rap-beta-image-icon-box">
+											<ul>
+												<li>
+													<div class="rap-beta-image-icon">
+														<i class="fa fa-arrows-alt"></i>
+													</div>
+												</li>
+												<li>
+													<div class="rap-beta-image-icon">
+														<i class="fa fa-bookmark-o"></i>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="rap-beta-txt bg-theme-3">
+									<h2><a href="#">rạp Beta</a></h2>
+									<p class="danh-gia-rap-beta">
+										<span class="danh-gia-rap-beta">3.6★</span>
+										<a href="#"> >12000 lượt thích</a> 
+										</span>
+									</p>
+									<div class="rap-beta-image-icon">
+										<div class="row">
+											<div class="col-sm-2">
+												<div class="rap-beta-image-icon">
+													<a href="#">
+														<img src="assets/images/clients/beta.jpg" alt="rap beta img">
+													</a>
+												</div>
+											</div>
+											<div class="col-sm-10">
+												<p>
+													-Beta Đan Phượng <br>
+													-Beta Giải Phóng <br>
+													-Beta Mỹ Đình <br>
+													-Beta Thanh Xuân
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="explore-open-close-part">
+										<div class="row">
+											<div class="col-sm-5">
+												<button class="close-btn" onclick="window.location.href='#'">8h30 - 22h30 </button>
+											</div>
+											<div class="col-sm-7">
+												<div class="rap-map-icon">
+													<a href="#"><i data-feather="map-pin"></i></a>
+													<a href="#"><i data-feather="upload"></i></a>
+													<a href="#"><i data-feather="heart"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<div>
+				<div>
+			</div>
+		</section>
+    
+</body>
