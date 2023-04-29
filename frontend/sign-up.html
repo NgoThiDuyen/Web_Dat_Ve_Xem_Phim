@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản | Moveek</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/fontawesome-free-6.2.0-web/css/all.min.css">
+</head>
+
+<body>
+    <div class="main-sign-up">
+        <!--header-->
+        <div id="header">
+            <div class="nav">
+                <ul class="list">
+                    <li><a href="/buy-ticket.html">Mua vé</a></li>
+                    <li><a href="/showtimes.html">Lịch chiếu</a></li>
+                    <li class="film">
+                        <a href="">Phim</a><i class="fa fa-caret-down"></i>
+                        <ul class="sub-list-film">
+                            <li><a href="now-film.html">Đang chiếu</a></li>
+                            <li><a href="">Sắp chiếu</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="sub-list-cinema" href="">Rạp</a>
+                    </li>
+                </ul>
+                <div class="logo">
+                    <a href="index.html"><img src="/assets/img/First-Logo/logo.png" alt="img" class="img-logo"></a>
+                </div>
+                <div class="search">
+                    <input type="text" class="input-search" placeholder="Search...">
+                </div>
+                <div class="map"><i class="fa fa-location-dot"></i></div>
+                <ul class="login">
+                    <li><a class="log-in" href="/log-in.html">Đăng nhập</a></li>
+                    <li><a class="sign-up" href="sign-up.html">Đăng ký</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--header-->
+
+        <div id="sign-up-content">
+            <div class="sign-up-body">
+                <h1 class="sign-up-heading">Đăng ký</h1>
+                <form action="/signup" method="post">
+                    <div class="first-line">
+                        <div class="sign-up-name">
+                            <div class="line"><label for="name">Họ tên:</label></div>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="sign-up-email">
+                            <div class="line"><label for="email">Email:</label></div>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="second-line">
+                        <div class="sign-up-pass">
+                            <div class="line"><label for="password">Mật khẩu:</label></div>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <div class="sign-up-cfpass">
+                            <div class="line"><label for="confirm-password">Xác nhận mật khẩu:</label></div>
+                            <input type="password" id="confirm-password" name="confirm-password" required>
+                        </div>
+                    </div>
+                    <input type="submit" value="Đăng ký">
+                </form>
+                <p>Nếu bạn đã có tài khoản, hãy <a href="/log-in.html">đăng nhập</a> ở đây.</p>
+            </div>
+            <div class="sign-up-logo">
+                <img src="/assets/img/Sign-up/mascot.png" alt="" class="sign-up-img">
+            </div>
+        </div>
+
+        <!--footer-->
+        <div id="footer">
+            <div class="wraper">
+                <div class="logo">
+                    <img src="/assets/img//Last-Logo/favicon-large.png" alt="img" class="img-logo">
+                </div>
+                <div class="inf">
+                    <div class="text-inf-heading">CÔNG TY TNHH MONET</div>
+                    <p class="text-inf">
+                        Số ĐKKD: 0315367026 · <br>Nơi cấp: Đại học Bách Khoa Hà Nội Tp. Hà Nội · <br>Đăng ký lần đầu
+                        ngày 01/11/2018
+                        <br>Địa chỉ: · v8.1
+                    </p>
+                </div>
+                <div class="partner">
+                    <div class="a-partner">Đối tác : </div>
+                    <ul class="b-partner">
+                        <li><img src="/assets/img/Partner/beta-cineplex-v2.jpg" alt="img"></li>
+                        <li><img src="/assets/img/Partner/cinemax.png" alt="img"></li>
+                    </ul>
+                </div>
+                <div class="policy">
+                    <ul class="-policy">
+                        <li><a href="">Về chúng tôi</a></li>
+                        <li><a href="">Chính sách và thỏa thuận</a></li>
+                        <li><a href="">Hỗ trợ</a></li>
+                        <li><a href="">liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--footer-->
+    </div>
+</body>
+
+</html>
