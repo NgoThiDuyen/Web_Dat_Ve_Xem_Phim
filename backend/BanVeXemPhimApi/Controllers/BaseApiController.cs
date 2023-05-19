@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using BanVeXemPhimApi.Common;
+using BanVeXemPhimApi.Dto;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,6 +24,18 @@ namespace BanVeXemPhimApi.Controllers
             {
                 return int.Parse(this.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid)?.Value);
             }
+        }
+
+        protected IActionResult NG(Exception ex)
+        {
+            var response = new MessageData { Data = null, Code = "Error", Des = ex.Message };
+            if (ex.GetType().Name == "ValidateError")
+            {
+                response.Message = "Validate Error";
+                return UnprocessableEntity(response);
+            }
+            response.Message = "Internal Server Error";
+            return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
     }
 

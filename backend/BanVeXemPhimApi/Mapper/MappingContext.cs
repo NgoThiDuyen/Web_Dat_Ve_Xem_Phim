@@ -11,6 +11,15 @@ namespace BanVeXemPhimApi.Mapper
         {
             // user request
             CreateMap<UserRegisterRequest, User>();
+
+            // schedule
+            CreateMap<Schedule, ScheduleDto>();
+
+            // Movie
+            CreateMap<MovieStoreRequest, Movie>();
+
+            // Cinema
+            CreateMap<CinemaStoreRequest, Cinema>();
         }
     }
 }

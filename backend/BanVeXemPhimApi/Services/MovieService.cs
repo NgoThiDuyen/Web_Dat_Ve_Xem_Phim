@@ -20,9 +20,11 @@ namespace BanVeXemPhimApi.Services
     public class MovieService
     {
         private readonly MovieRepository _movieRepository;
+        private readonly ReviewMovieRepository _reviewMovieRepository;
         public MovieService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
+            _reviewMovieRepository = new ReviewMovieRepository(apiOption, databaseContext, mapper);
         }
 
         /// <summary>
@@ -118,6 +120,36 @@ namespace BanVeXemPhimApi.Services
                     return query.Where(row => row.Name.Contains(name) || name.Contains(row.Name)).ToList();
                 }
                 return new List<Movie>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Review movie
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public object UserReviewMovie(int userId, ReviewMovieRequest request)
+        {
+            try
+            {
+                var movie = _movieRepository.FindOrFail(request.MovieId);
+                if(movie == null)
+                {
+                    throw new Exception("Movie does not exits!");
+                }
+
+                var newReviewMovie = new ReviewMovie()
+                {
+                    MovieId = request.MovieId,
+                    Content = request.Content,
+                };
+                _reviewMovieRepository.Create(newReviewMovie);
+                _reviewMovieRepository.SaveChange();
+                return newReviewMovie;
             }
             catch (Exception ex)
             {

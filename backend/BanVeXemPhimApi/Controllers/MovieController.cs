@@ -4,6 +4,7 @@ using BanVeXemPhimApi.Common;
 using BanVeXemPhimApi.Controllers;
 using BanVeXemPhimApi.Database;
 using BanVeXemPhimApi.Dto;
+using BanVeXemPhimApi.Models;
 using BanVeXemPhimApi.Request;
 using BanVeXemPhimApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -99,6 +100,26 @@ namespace BanVeXemPhimApi.Controllers
             try
             {
                 var res = _movieService.UserSearchMovie(name);
+                return new MessageData { Data = res };
+            }
+            catch (Exception ex)
+            {
+                return new MessageData() { Code = "error", Des = ex.Message };
+            }
+        }
+
+        /// <summary>
+        /// Review movie
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("ReviewMovie")]
+        public MessageData UserReviewMovie(ReviewMovieRequest request)
+        {
+            try
+            {
+                var res = _movieService.UserReviewMovie(UserId, request);
                 return new MessageData { Data = res };
             }
             catch (Exception ex)
