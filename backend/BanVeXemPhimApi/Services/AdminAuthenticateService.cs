@@ -33,14 +33,14 @@ namespace BanVeXemPhimApi.Services
         /// </summary>
         /// <param name="adminLoginRequest"></param>
         /// <returns></returns>
-        public object AdminLogin(UserLoginRequest adminLoginRequest)
+        public object AdminLogin(AdminLoginRequest adminLoginRequest)
         {
             try
             {
                 var admin = _adminRepository.AdminLogin(adminLoginRequest);
                 if (admin == null)
                 {
-                    throw new Exception("Username or Password incorrect");
+                    throw new ValidateError("Username or Password incorrect");
                 }
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_apiOption.Secret));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);

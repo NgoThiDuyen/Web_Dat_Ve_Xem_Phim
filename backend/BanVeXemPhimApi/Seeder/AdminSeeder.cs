@@ -23,7 +23,9 @@ namespace BanVeXemPhimApi.Seeder
                     Id = 1,
                     Name = "Admin",
                     Username = "admin@gmail.com",
+                    Email = "admin@gmail.com",
                     Password = Untill.CreateMD5("admin@gmail.com"),
+                    Role = "Manager"
                 });
         }
     }

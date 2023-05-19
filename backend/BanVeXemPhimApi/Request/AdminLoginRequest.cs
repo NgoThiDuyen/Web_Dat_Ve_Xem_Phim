@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BanVeXemPhimApi.Request
 {
-    public class UserLoginRequest
+    public class AdminLoginRequest
     {
         [Required, EmailAddress]
         public string Username { get; set; }

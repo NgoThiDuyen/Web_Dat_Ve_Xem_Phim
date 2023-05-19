@@ -23,7 +23,7 @@ namespace BanVeXemPhimApi.Repositories
         /// </summary>
         /// <param name="userLoginRequest"></param>
         /// <returns></returns>
-        public Admin AdminLogin(UserLoginRequest userLoginRequest)
+        public Admin AdminLogin(AdminLoginRequest userLoginRequest)
         {
             try
             {
