@@ -20,21 +20,44 @@ namespace BanVeXemPhimApi.Services
     public class ScheduleService
     {
         private readonly ScheduleRepository _scheduleRepository;
+        private readonly IMapper _mapper;
         public ScheduleService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _scheduleRepository = new ScheduleRepository(apiOption, databaseContext, mapper);
+            _mapper = mapper;
         }
 
         /// <summary>
         /// Get schedule list
         /// </summary>
         /// <returns></returns>
-        public object GetScheduleList()
+        public object GetScheduleIsPlayingList()
         {
             try
             {
-                var dateNow = DateTime.Now.AddDays(7);
-                return _scheduleRepository.FindAll().Where(row => row.PlaySchedule < dateNow).ToList();
+                var dateNow = DateTime.Now;
+                var dateStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day);
+                var dateFinish = dateStart.AddDays(1);
+                return _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get schedule list
+        /// </summary>
+        /// <returns></returns>
+        public object GetScheduleComingSoonList()
+        {
+            try
+            {
+                var dateNow = DateTime.Now;
+                var dateStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day).AddDays(1);
+                var dateFinish = dateStart.AddDays(6);
+                return _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
             }
             catch (Exception ex)
             {
@@ -51,7 +74,20 @@ namespace BanVeXemPhimApi.Services
         {
             try
             {
-                return _scheduleRepository.FindAll().Where(row => row.MovieId == movieId).FirstOrDefault();
+                var scheduleList = _scheduleRepository.FindAll().Where(row => row.MovieId == movieId && row.PlaySchedule > DateTime.Now).ToList();
+                var scheduleDtoList = scheduleList.Select(row => _mapper.Map<ScheduleDto>(row)).ToList();
+                foreach(var scheduleDto in scheduleDtoList)
+                {
+                    scheduleDto.PlayScheduleString = SystemConfig.DayInWeekList[(int)scheduleDto.PlaySchedule.DayOfWeek] + "-" + scheduleDto.PlaySchedule.ToString("dd-MM-yyyy");
+                    scheduleDto.TimePlayString =scheduleDto.PlaySchedule.ToString("HH:mm");
+                    scheduleDto.IsCanBook = false;
+                    if(scheduleDto.PlaySchedule > DateTime.Now.AddHours(0.5))
+                    {
+                        scheduleDto.IsCanBook = true;
+                    }
+                }
+
+                return scheduleDtoList;
             }
             catch (Exception ex)
             {

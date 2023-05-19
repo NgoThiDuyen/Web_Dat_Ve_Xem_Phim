@@ -31,6 +31,10 @@ namespace BanVeXemPhimApi.Database
         public DbSet<Schedule> schedules { get; set; }
         #endregion
 
+        #region ReviewMovie
+        public DbSet<ReviewMovie> reviewMovies{ get; set; }
+        #endregion
+
         public static void UpdateDatabase(DatabaseContext context)
         {
             context.Database.Migrate();
@@ -54,6 +58,10 @@ namespace BanVeXemPhimApi.Database
 
             #region Movie
             new MovieSeeder(modelBuilder).SeedData();
+            #endregion
+
+            #region Admin
+            new AdminSeeder(modelBuilder).SeedData();
             #endregion
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DatabaseContext).Assembly);

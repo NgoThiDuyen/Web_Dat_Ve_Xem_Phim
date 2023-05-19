@@ -26,17 +26,37 @@ namespace BanVeXemPhimApi.Controllers
         }
 
         /// <summary>
-        /// Get schedule list
+        /// Get schedule is playing list
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        [Route("GetScheduleList")]
-        public MessageData GetScheduleList()
+        [Route("GetScheduleIsPlayingList")]
+        public MessageData GetScheduleIsPlayingList()
         {
             try
             {
-                var res = _scheduleService.GetScheduleList();
+                var res = _scheduleService.GetScheduleIsPlayingList();
+                return new MessageData { Data = res };
+            }
+            catch (Exception ex)
+            {
+                return new MessageData() { Code = "error", Des = ex.Message };
+            }
+        }
+
+        /// <summary>
+        /// Get schedule is playing list
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetScheduleComingSoonList")]
+        public MessageData GetScheduleComingSoonList()
+        {
+            try
+            {
+                var res = _scheduleService.GetScheduleComingSoonList();
                 return new MessageData { Data = res };
             }
             catch (Exception ex)
