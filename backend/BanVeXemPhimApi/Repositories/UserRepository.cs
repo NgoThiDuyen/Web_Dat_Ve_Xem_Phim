@@ -45,7 +45,7 @@ namespace BanVeXemPhimApi.Repositories
         {
             try
             {
-                var userlist = Model.Where(row => row.Username == user.Username || row.NumberPhone == user.NumberPhone).ToList();
+                var userlist = Model.Where(row => row.Username == user.Username).ToList();
                 if(userlist.Count > 0)
                 {
                     return false;

@@ -80,13 +80,8 @@ namespace BanVeXemPhimApi.Services
         {
             try
             {
-                if(userRegisterRequest.Password.Length < 8)
-                {
-                    throw new Exception("Password minimum 8 characters!");
-                }
-
                 var user = _mapper.Map<User>(userRegisterRequest);
-                user.Name = user.Username;
+                user.Username = user.Email;
                 user.Password = Untill.CreateMD5(userRegisterRequest.Password);
 
                 var resultCheck = _userRepository.CheckUserRegister(user);

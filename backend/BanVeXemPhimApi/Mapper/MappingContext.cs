@@ -17,6 +17,7 @@ namespace BanVeXemPhimApi.Mapper
 
             // Movie
             CreateMap<MovieStoreRequest, Movie>();
+            CreateMap<Movie, MovieWithScheduleDto>();
 
             // Cinema
             CreateMap<CinemaStoreRequest, Cinema>();

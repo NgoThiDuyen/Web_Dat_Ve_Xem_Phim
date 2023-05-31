@@ -20,10 +20,12 @@ namespace BanVeXemPhimApi.Services
     public class ScheduleService
     {
         private readonly ScheduleRepository _scheduleRepository;
+        private readonly MovieRepository _movieRepository;
         private readonly IMapper _mapper;
         public ScheduleService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _scheduleRepository = new ScheduleRepository(apiOption, databaseContext, mapper);
+            _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
         }
 
@@ -38,7 +40,29 @@ namespace BanVeXemPhimApi.Services
                 var dateNow = DateTime.Now;
                 var dateStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day);
                 var dateFinish = dateStart.AddDays(1);
-                return _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
+                var scheduleList = _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
+                var movieIdList = scheduleList.Select(row => row.MovieId).ToList();
+                var movieList = _movieRepository.FindByCondition(row => movieIdList.Contains(row.Id)).ToList();
+
+                var movieWihtScheuleList = movieList.Select(row => _mapper.Map<MovieWithScheduleDto>(row)).ToList();
+
+                foreach (var movieWihtScheule in movieWihtScheuleList)
+                {
+                    var scheuleDtoList = scheduleList.Where(row => row.MovieId == movieWihtScheule.Id).Select(row => _mapper.Map<ScheduleDto>(row)).ToList();
+                    foreach (var scheduleDto in scheuleDtoList)
+                    {
+                        scheduleDto.PlayScheduleString = SystemConfig.DayInWeekList[(int)scheduleDto.PlaySchedule.DayOfWeek] + "-" + scheduleDto.PlaySchedule.ToString("dd-MM-yyyy");
+                        scheduleDto.TimePlayString = scheduleDto.PlaySchedule.ToString("HH:mm");
+                        scheduleDto.IsCanBook = false;
+                        if (scheduleDto.PlaySchedule > DateTime.Now.AddHours(0.5))
+                        {
+                            scheduleDto.IsCanBook = true;
+                        }
+                    }
+                    movieWihtScheule.ScheduleList = scheuleDtoList;
+                }
+
+                return movieWihtScheuleList;
             }
             catch (Exception ex)
             {
@@ -57,7 +81,29 @@ namespace BanVeXemPhimApi.Services
                 var dateNow = DateTime.Now;
                 var dateStart = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day).AddDays(1);
                 var dateFinish = dateStart.AddDays(6);
-                return _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
+                var scheduleList = _scheduleRepository.FindAll().Where(row => row.PlaySchedule >= dateStart && row.PlaySchedule <= dateFinish).ToList();
+                var movieIdList = scheduleList.Select(row => row.MovieId).ToList();
+                var movieList = _movieRepository.FindByCondition(row => movieIdList.Contains(row.Id)).ToList();
+
+                var movieWihtScheuleList = movieList.Select(row => _mapper.Map<MovieWithScheduleDto>(row)).ToList();
+
+                foreach (var movieWihtScheule in movieWihtScheuleList)
+                {
+                    var scheuleDtoList = scheduleList.Where(row => row.MovieId == movieWihtScheule.Id).Select(row => _mapper.Map<ScheduleDto>(row)).ToList();
+                    foreach (var scheduleDto in scheuleDtoList)
+                    {
+                        scheduleDto.PlayScheduleString = SystemConfig.DayInWeekList[(int)scheduleDto.PlaySchedule.DayOfWeek] + "-" + scheduleDto.PlaySchedule.ToString("dd-MM-yyyy");
+                        scheduleDto.TimePlayString = scheduleDto.PlaySchedule.ToString("HH:mm");
+                        scheduleDto.IsCanBook = false;
+                        if (scheduleDto.PlaySchedule > DateTime.Now.AddHours(0.5))
+                        {
+                            scheduleDto.IsCanBook = true;
+                        }
+                    }
+                    movieWihtScheule.ScheduleList = scheuleDtoList;
+                }
+
+                return movieWihtScheuleList;
             }
             catch (Exception ex)
             {
