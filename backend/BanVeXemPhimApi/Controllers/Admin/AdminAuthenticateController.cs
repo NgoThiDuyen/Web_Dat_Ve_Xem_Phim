@@ -17,7 +17,7 @@ using System.Net.Http;
 namespace BanVeXemPhimApi.Controllers.Admin
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     public class AdminAuthenticateController : BaseApiController<ScheduleManagementController>
     {
         private readonly AdminAuthenticateService _adminAuthenticateService;

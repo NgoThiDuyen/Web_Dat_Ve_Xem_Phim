@@ -17,7 +17,7 @@ using System.Net.Http;
 namespace BanVeXemPhimApi.Controllers.Admin
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [Authorize(Roles = "Manager")]
     public class MovieManagementController : BaseApiController<MovieManagementController>
     {
