@@ -35,6 +35,10 @@ namespace BanVeXemPhimApi.Database
         public DbSet<ReviewMovie> reviewMovies{ get; set; }
         #endregion
 
+        #region OrderTicket
+        public DbSet<OrderTicket> order_tickets{ get; set; }
+        #endregion
+
         public static void UpdateDatabase(DatabaseContext context)
         {
             context.Database.Migrate();
