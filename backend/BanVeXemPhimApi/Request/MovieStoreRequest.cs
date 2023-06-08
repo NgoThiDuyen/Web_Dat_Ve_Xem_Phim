@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,9 +15,7 @@ namespace BanVeXemPhimApi.Request
         public int MovieType { get; set; }
         public int Time { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public string Image { get; set; }
         public string Description { get; set; }
-        public int NumberBooking { get; set; }
-        public int NumberView { get; set; }
+        public IFormFile ImageFile { get; set; }
     }
 }

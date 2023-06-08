@@ -8,6 +8,7 @@ using BanVeXemPhimApi.Models;
 using BanVeXemPhimApi.Request;
 using BanVeXemPhimApi.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -22,9 +23,9 @@ namespace BanVeXemPhimApi.Controllers.Admin
     public class MovieManagementController : BaseApiController<MovieManagementController>
     {
         private readonly MovieManagementService _movieManagementService;
-        public MovieManagementController(DatabaseContext databaseContext, IMapper mapper, ApiOption apiConfig)
+        public MovieManagementController(DatabaseContext databaseContext, IMapper mapper, ApiOption apiConfig, IWebHostEnvironment webHost)
         {
-            _movieManagementService = new MovieManagementService(apiConfig, databaseContext, mapper);
+            _movieManagementService = new MovieManagementService(apiConfig, databaseContext, mapper, webHost);
         }
 
         /// <summary>
@@ -48,12 +49,32 @@ namespace BanVeXemPhimApi.Controllers.Admin
         }
 
         /// <summary>
+        /// Get list movies
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
+        [HttpGet("GetMovieDetail")]
+        public IActionResult GetMovieDetail(int movieId)
+        {
+            try
+            {
+                var res = _movieManagementService.GetMovieDetail(movieId);
+                return Ok(new MessageData { Data = res });
+            }
+            catch (Exception ex)
+            {
+                return NG(ex);
+            }
+        }
+
+        /// <summary>
         /// Store movie
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("Store")]
-        public IActionResult Store(MovieStoreRequest request)
+        public IActionResult Store([FromForm]MovieStoreRequest request)
         {
             try
             {

@@ -15,6 +15,8 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using Microsoft.AspNetCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BanVeXemPhimApi.Services
 {
@@ -22,10 +24,13 @@ namespace BanVeXemPhimApi.Services
     {
         private readonly MovieRepository _movieRepository;
         private readonly IMapper _mapper;
-        public MovieManagementService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
+        private readonly IWebHostEnvironment _webHost;
+
+        public MovieManagementService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper, IWebHostEnvironment webHost)
         {
             _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
+            _webHost = webHost;
         }
 
         /// <summary>
@@ -70,6 +75,23 @@ namespace BanVeXemPhimApi.Services
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="movieId"></param>
+        /// <returns></returns>
+        public object GetMovieDetail(int movieId)
+        {
+            try
+            {
+                return _movieRepository.FindOrFail(movieId);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Store movie
         /// </summary>
         /// <param name="request"></param>
@@ -78,10 +100,22 @@ namespace BanVeXemPhimApi.Services
         {
             try
             {
-                var newMovie = _mapper.Map<Movie>(request);
-                _movieRepository.Create(newMovie);
-                _movieRepository.SaveChange();
-                return newMovie;
+                if (request.ImageFile == null)
+                {
+                    throw new Exception("File can't not null");
+                }
+
+                using (FileStream fileStream = File.Create(_webHost.WebRootPath + "\\image\\movie\\" + request.ImageFile.FileName))
+                {
+                    request.ImageFile.CopyTo(fileStream);
+                    fileStream.Flush();
+                    var newMovie = _mapper.Map<Movie>(request);
+                    newMovie.Image = "image/movie/"+ request.ImageFile.FileName;
+                    _movieRepository.Create(newMovie);
+                    _movieRepository.SaveChange();
+                    return newMovie;
+                }
+                return null;
             }
             catch(Exception ex)
             {
