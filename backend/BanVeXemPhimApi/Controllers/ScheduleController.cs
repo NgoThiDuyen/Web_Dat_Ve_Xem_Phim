@@ -85,5 +85,26 @@ namespace BanVeXemPhimApi.Controllers
                 return new MessageData() { Code = "error", Des = ex.Message };
             }
         }
+
+        /// <summary>
+        /// Get schedule detail
+        /// </summary>
+        /// <param name="scheduleId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("GetScheduleDetail")]
+        public IActionResult GetScheduleDetail(int scheduleId)
+        {
+            try
+            {
+                var res = _scheduleService.GetScheduleDetail(scheduleId);
+                return Ok(new MessageData { Data = res });
+            }
+            catch (Exception ex)
+            {
+                return NG(ex);
+            }
+        }
     }
 }

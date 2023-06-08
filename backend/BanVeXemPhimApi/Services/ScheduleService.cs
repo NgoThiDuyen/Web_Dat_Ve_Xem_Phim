@@ -21,11 +21,13 @@ namespace BanVeXemPhimApi.Services
     {
         private readonly ScheduleRepository _scheduleRepository;
         private readonly MovieRepository _movieRepository;
+        private readonly CinemaRepository _cinemaRepository;
         private readonly IMapper _mapper;
         public ScheduleService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _scheduleRepository = new ScheduleRepository(apiOption, databaseContext, mapper);
             _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
+            _cinemaRepository = new CinemaRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
         }
 
@@ -134,6 +136,58 @@ namespace BanVeXemPhimApi.Services
                 }
 
                 return scheduleDtoList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Get schedule detail
+        /// </summary>
+        /// <param name="scheduleId"></param>
+        /// <returns></returns>
+        public object GetScheduleDetail(int scheduleId)
+        {
+            try
+            {
+                var schedule = _scheduleRepository.FindOrFail(scheduleId);
+                if(schedule == null)
+                {
+                    throw new ValidateError("ScheduleId does not exist");
+                }
+                if (schedule.PlaySchedule < DateTime.Now.AddHours(-1))
+                {
+                    throw new ValidateError("You cannot book tickets for upcoming movies!");
+                }
+
+                var getScheduleDetailDto = _mapper.Map<GetScheduleDetailDto>(schedule);
+                getScheduleDetailDto.PlayScheduleString = getScheduleDetailDto.PlaySchedule.ToString("HH:MM")+" " + SystemConfig.DayInWeekList[(int)getScheduleDetailDto.PlaySchedule.DayOfWeek] + "-" + getScheduleDetailDto.PlaySchedule.ToString("dd/MM/yyyy");
+
+                var movie = _movieRepository.FindOrFail(getScheduleDetailDto.MovieId);
+                if (movie != null)
+                {
+                    getScheduleDetailDto.MovieName = movie.Name;
+                    getScheduleDetailDto.Author = movie.Author;
+                    getScheduleDetailDto.Cast = movie.Cast;
+                    getScheduleDetailDto.MovieType = movie.MovieType;
+                    getScheduleDetailDto.Time = movie.Time;
+                    getScheduleDetailDto.ReleaseDate = movie.ReleaseDate;
+                    getScheduleDetailDto.Image = movie.Image;
+                    getScheduleDetailDto.MovieDescription = movie.Description;
+                    getScheduleDetailDto.NumberBooking = movie.NumberBooking;
+                    getScheduleDetailDto.NumberView = movie.NumberView;
+                }
+                var cinema = _cinemaRepository.FindOrFail(getScheduleDetailDto.CinemaId);
+                if(cinema != null)
+                {
+                    getScheduleDetailDto.CinemaName = cinema.Name;
+                    getScheduleDetailDto.Address = cinema.Address;
+                    getScheduleDetailDto.CinemaDescription = cinema.Description;
+                }
+
+                return getScheduleDetailDto;
             }
             catch (Exception ex)
             {
