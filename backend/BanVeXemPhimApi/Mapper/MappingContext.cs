@@ -14,6 +14,7 @@ namespace BanVeXemPhimApi.Mapper
 
             // schedule
             CreateMap<Schedule, ScheduleDto>();
+            CreateMap<Schedule, GetScheduleDetailDto>();
 
             // Movie
             CreateMap<MovieStoreRequest, Movie>();
@@ -21,6 +22,10 @@ namespace BanVeXemPhimApi.Mapper
 
             // Cinema
             CreateMap<CinemaStoreRequest, Cinema>();
+
+            // OrderTicket
+            CreateMap<BookTicketRequest, OrderTicket>();
+            CreateMap<OrderTicket, OrderHistoryDto>();
         }
     }
 }
