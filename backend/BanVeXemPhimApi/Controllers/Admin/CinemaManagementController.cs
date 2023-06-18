@@ -34,11 +34,30 @@ namespace BanVeXemPhimApi.Controllers.Admin
         /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet("Get")]
-        public IActionResult Get(int limit, int page)
+        public IActionResult Get(int limit, int page, string? name)
         {
             try
             {
-                var res = _cinemaManagementService.GetCinemas(limit, page);
+                var res = _cinemaManagementService.GetCinemas(limit, page, name);
+                return Ok(new MessageData { Data = res });
+            }
+            catch (Exception ex)
+            {
+                return NG(ex);
+            }
+        }
+
+        /// <summary>
+        /// get detail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("GetDetail")]
+        public IActionResult GetDetail(int id)
+        {
+            try
+            {
+                var res = _cinemaManagementService.GetDetail(id);
                 return Ok(new MessageData { Data = res });
             }
             catch (Exception ex)

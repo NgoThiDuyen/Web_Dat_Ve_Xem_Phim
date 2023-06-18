@@ -34,33 +34,16 @@ namespace BanVeXemPhimApi.Services
         /// <param name="limit"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public object GetCinemas(int limit, int page)
+        public object GetCinemas(int limit, int page, string? name)
         {
             try
             {
                 var query = this._cinemaRepository.FindAll();
-                var total = query.Count();
-                int tmpByInt = total / limit;
-                double tmpByDouble = (double)total / (double)limit;
-                int totalPage = 1;
-                if (tmpByDouble > (double)tmpByInt)
+                if (!string.IsNullOrEmpty(name))
                 {
-                    totalPage = tmpByInt + 1;
+                    query = query.Where(row => row.Name.ToLower().Contains(name.ToLower()));
                 }
-                else
-                {
-                    totalPage = tmpByInt;
-                }
-                query = query.Skip((page - 1) * limit).Take(limit);
-                var amount = query.Count();
-                return new
-                {
-                    data = query.ToList(),
-                    Amount = amount,
-                    PageSize = limit,
-                    Total = total,
-                    TotalPage = totalPage,
-                };
+                return new Pagination<Cinema>(query, limit, page);
             }
             catch(Exception ex)
             {
@@ -89,6 +72,23 @@ namespace BanVeXemPhimApi.Services
         }
 
         /// <summary>
+        /// get detail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object GetDetail(int id)
+        {
+            try
+            {
+                return _cinemaRepository.FindOrFail(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Update movie
         /// </summary>
         /// <param name="movieId"></param>
@@ -109,6 +109,7 @@ namespace BanVeXemPhimApi.Services
                 cinemaUpdate.UpdatedDate = DateTime.Now;
 
                 _cinemaRepository.UpdateByEntity(cinemaUpdate);
+                _cinemaRepository.SaveChange();
                 return cinemaUpdate;
             }
             catch (Exception ex)
