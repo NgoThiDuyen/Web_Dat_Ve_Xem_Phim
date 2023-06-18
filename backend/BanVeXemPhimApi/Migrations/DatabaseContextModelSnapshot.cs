@@ -55,7 +55,7 @@ namespace BanVeXemPhimApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(9744),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 309, DateTimeKind.Local).AddTicks(212),
                             Email = "admin@gmail.com",
                             Name = "Admin",
                             Password = "75D23AF433E0CEA4C0E45A56DBA18B30",
@@ -143,14 +143,14 @@ namespace BanVeXemPhimApi.Migrations
                             Id = 1,
                             Author = "Gorō Taniguchi",
                             Cast = "Mayumi Tanaka (Luffy), Shuichi Ikeda (Shanks), Hiroaki Hirata (Sanji), Ikue Otani (Tony Tony Chopper)",
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(2855),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 305, DateTimeKind.Local).AddTicks(6956),
                             Description = "Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ” Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát được đánh giá là ở “Đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Băng hải tặc Mũ Rơm và các fan khác của Uta từ nhiều thế lực khác nhau như hải tặc lẫn hải quân đều đã cùng tề tựu về buổi biểu diễn này. Biến cố bắt đầu ngay khi sự thật kinh hoàng được tiết lộ rằng Uta chính là “con gái của Shanks”. Luffy và Uta lần đầu tiên hội ngộ sau lần gặp gỡ vào 12 năm trước tại Làng Foosha.",
                             Image = "image/movie/movie_1.jpg",
                             MovieType = 1,
                             Name = "ONE PIECE FILM RED",
                             NumberBooking = 0,
                             NumberView = 0,
-                            ReleaseDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(5342),
+                            ReleaseDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(57),
                             Time = 115,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -159,14 +159,14 @@ namespace BanVeXemPhimApi.Migrations
                             Id = 2,
                             Author = "Ryan Coogler",
                             Cast = "Tenoch Huerta, Martin Freeman, Lupita Nyong'o",
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6458),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1213),
                             Description = "Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ” Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát được đánh giá là ở “Đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Băng hải tặc Mũ Rơm và các fan khác của Uta từ nhiều thế lực khác nhau như hải tặc lẫn hải quân đều đã cùng tề tựu về buổi biểu diễn này. Biến cố bắt đầu ngay khi sự thật kinh hoàng được tiết lộ rằng Uta chính là “con gái của Shanks”. Luffy và Uta lần đầu tiên hội ngộ sau lần gặp gỡ vào 12 năm trước tại Làng Foosha.",
                             Image = "image/movie/movie_2.jpg",
                             MovieType = 1,
                             Name = "CHIẾN BINH BÁO ĐEN 2: WAKANDA BẤT DIỆT",
                             NumberBooking = 0,
                             NumberView = 0,
-                            ReleaseDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6468),
+                            ReleaseDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1223),
                             Time = 115,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -175,14 +175,14 @@ namespace BanVeXemPhimApi.Migrations
                             Id = 3,
                             Author = "James Lee",
                             Cast = "Alif Satar, Ikmal Amry, Abbas Mahmood",
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6471),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1228),
                             Description = "Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ” Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát được đánh giá là ở “Đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Băng hải tặc Mũ Rơm và các fan khác của Uta từ nhiều thế lực khác nhau như hải tặc lẫn hải quân đều đã cùng tề tựu về buổi biểu diễn này. Biến cố bắt đầu ngay khi sự thật kinh hoàng được tiết lộ rằng Uta chính là “con gái của Shanks”. Luffy và Uta lần đầu tiên hội ngộ sau lần gặp gỡ vào 12 năm trước tại Làng Foosha.",
                             Image = "image/movie/movie_3.jpg",
                             MovieType = 4,
                             Name = "CHÚ NGUYỀN TÁI SINH",
                             NumberBooking = 0,
                             NumberView = 0,
-                            ReleaseDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6473),
+                            ReleaseDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1230),
                             Time = 115,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -191,14 +191,14 @@ namespace BanVeXemPhimApi.Migrations
                             Id = 4,
                             Author = "Nguyễn Chung",
                             Cast = "NSND Kim Xuân, NSƯT Lê Thiện, NSƯT Công Ninh, Dược Sĩ Tiến, Phạm Huỳnh Hữu Tài",
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6476),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1232),
                             Description = "Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ” Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát được đánh giá là ở “Đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Băng hải tặc Mũ Rơm và các fan khác của Uta từ nhiều thế lực khác nhau như hải tặc lẫn hải quân đều đã cùng tề tựu về buổi biểu diễn này. Biến cố bắt đầu ngay khi sự thật kinh hoàng được tiết lộ rằng Uta chính là “con gái của Shanks”. Luffy và Uta lần đầu tiên hội ngộ sau lần gặp gỡ vào 12 năm trước tại Làng Foosha.",
                             Image = "image/movie/movie_4.jpg",
                             MovieType = 4,
                             Name = "HẠNH PHÚC MÁU",
                             NumberBooking = 0,
                             NumberView = 0,
-                            ReleaseDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6478),
+                            ReleaseDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1234),
                             Time = 115,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
@@ -207,14 +207,14 @@ namespace BanVeXemPhimApi.Migrations
                             Id = 5,
                             Author = "Samuel Tourneux",
                             Cast = "",
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6479),
+                            CreatedDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1236),
                             Description = "Bối cảnh One Piece Film Red diễn ra ở hòn đảo âm nhạc Elegia, nơi diva nổi tiếng bậc nhất thế giới tên Uta thực hiện buổi biểu diễn trực tiếp đầu tiên trước công chúng. Uta đứng trên sân khấu với một ước mơ giản dị rằng ” Âm nhạc của tôi sẽ khiến cho thế giới hạnh phúc”. Đằng sau hình ảnh cô ca sĩ sở hữu giọng hát được đánh giá là ở “Đẳng cấp hoàn toàn khác” là một thân thế vô cùng bí ẩn được che giấu. Băng hải tặc Mũ Rơm và các fan khác của Uta từ nhiều thế lực khác nhau như hải tặc lẫn hải quân đều đã cùng tề tựu về buổi biểu diễn này. Biến cố bắt đầu ngay khi sự thật kinh hoàng được tiết lộ rằng Uta chính là “con gái của Shanks”. Luffy và Uta lần đầu tiên hội ngộ sau lần gặp gỡ vào 12 năm trước tại Làng Foosha.",
                             Image = "image/movie/movie_5.jpg",
                             MovieType = 3,
                             Name = "KHỈ CON LON TON THẾ GIỚI",
                             NumberBooking = 0,
                             NumberView = 0,
-                            ReleaseDate = new DateTime(2023, 6, 2, 17, 40, 35, 833, DateTimeKind.Local).AddTicks(6482),
+                            ReleaseDate = new DateTime(2023, 6, 12, 14, 37, 55, 307, DateTimeKind.Local).AddTicks(1239),
                             Time = 115,
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -343,17 +343,6 @@ namespace BanVeXemPhimApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2023, 6, 2, 17, 40, 35, 823, DateTimeKind.Local).AddTicks(9855),
-                            Name = "Nguyễn Văn Test",
-                            Password = "3213D1FD1AEAE020606E12C32EAFE45E",
-                            UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Username = "nguyenvantest@gmail.com"
-                        });
                 });
 #pragma warning restore 612, 618
         }

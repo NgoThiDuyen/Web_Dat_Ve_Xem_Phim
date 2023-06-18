@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BanVeXemPhimApi.Dto;
+using BanVeXemPhimApi.Dto.Admin;
 using BanVeXemPhimApi.Models;
 using BanVeXemPhimApi.Request;
 
@@ -15,6 +16,8 @@ namespace BanVeXemPhimApi.Mapper
             // schedule
             CreateMap<Schedule, ScheduleDto>();
             CreateMap<Schedule, GetScheduleDetailDto>();
+            CreateMap<ScheduleStoreRequest, Schedule>();
+            CreateMap<Schedule, GetScheduleDto>();
 
             // Movie
             CreateMap<MovieStoreRequest, Movie>();
@@ -26,6 +29,9 @@ namespace BanVeXemPhimApi.Mapper
             // OrderTicket
             CreateMap<BookTicketRequest, OrderTicket>();
             CreateMap<OrderTicket, OrderHistoryDto>();
+
+            // Admin
+            CreateMap<EmployeeStoreRequest, Admin>();
         }
     }
 }
