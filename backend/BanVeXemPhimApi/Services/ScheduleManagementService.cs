@@ -15,16 +15,21 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using BanVeXemPhimApi.Dto.Admin;
 
 namespace BanVeXemPhimApi.Services
 {
     public class ScheduleManagementService
     {
         private readonly ScheduleRepository _scheduleRepository;
+        private readonly MovieRepository _movieRepository;
+        private readonly CinemaRepository _cinemaRepository;
         private readonly IMapper _mapper;
         public ScheduleManagementService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _scheduleRepository = new ScheduleRepository(apiOption, databaseContext, mapper);
+            _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
+            _cinemaRepository = new CinemaRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
         }
 
@@ -39,31 +44,51 @@ namespace BanVeXemPhimApi.Services
             try
             {
                 var query = this._scheduleRepository.FindAll();
-                query.Skip((page - 1) * limit).Take(limit);
-                var total = query.Count();
-                int tmpByInt = total / limit;
-                double tmpByDouble = (double)total / (double)limit;
-                int totalPage = 1;
-                if (tmpByDouble > (double)tmpByInt)
+                var paginationSchedule = new Pagination<Schedule>(query, limit, page);
+                var scheduleList = paginationSchedule.Data;
+                
+                var getScheduleDtoList = scheduleList.Select(row => _mapper.Map<GetScheduleDto>(row)).ToList();
+                var movieIdList = getScheduleDtoList.Select(row => row.MovieId).ToList();
+                var cinemaIdList = getScheduleDtoList.Select(row => row.CinemaId).ToList();
+
+                var movieList = _movieRepository.FindByCondition(row => movieIdList.Contains(row.Id)).ToList();
+                var cinemaList = _cinemaRepository.FindByCondition(row => cinemaIdList.Contains(row.Id)).ToList();
+
+                foreach( var item in getScheduleDtoList )
                 {
-                    totalPage = tmpByInt + 1;
+                    var movie = movieList.Where(row => row.Id == item.MovieId).FirstOrDefault();
+                    if ( movie != null )
+                    {
+                        item.MovieName = movie.Name;
+                    }
+
+                    var cinema = cinemaList.Where(row => row.Id == item.CinemaId).FirstOrDefault();
+                    if (cinema != null)
+                    {
+                        item.CinemaName = cinema.Name;
+                    }
                 }
-                else
-                {
-                    totalPage = tmpByInt;
-                }
-                query = query.Skip((page - 1) * limit).Take(limit);
-                var amount = query.Count();
-                return new
-                {
-                    data = query.ToList(),
-                    Amount = amount,
-                    PageSize = limit,
-                    Total = total,
-                    TotalPage = totalPage,
-                };
+
+                return new Pagination<GetScheduleDto>(getScheduleDtoList, paginationSchedule.TotalPages, paginationSchedule.TotalPages, limit, page);
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// get schedule
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object GetDetail(int id)
+        {
+            try
+            {
+                return _scheduleRepository.FindOrFail(id);
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -78,7 +103,20 @@ namespace BanVeXemPhimApi.Services
         {
             try
             {
+                var movie = _movieRepository.FindOrFail(request.MovieId);
+                if (movie == null)
+                {
+                    throw new Exception("MovieId does not exist!");
+                }
+
+                var cinema = _cinemaRepository.FindOrFail(request.CinemaId);
+                if (cinema == null)
+                {
+                    throw new Exception("CinemaId does not exist!");
+                }
+
                 var newSchedule = _mapper.Map<Schedule>(request);
+                newSchedule.SeatHaveBeenBookedList = "";
                 _scheduleRepository.Create(newSchedule);
                 _scheduleRepository.SaveChange();
                 return newSchedule;
@@ -110,6 +148,7 @@ namespace BanVeXemPhimApi.Services
                 scheduleUpdate.UpdatedDate = DateTime.Now;
 
                 _scheduleRepository.UpdateByEntity(scheduleUpdate);
+                _scheduleRepository.SaveChange();
                 return scheduleUpdate;
             }
             catch (Exception ex)

@@ -48,6 +48,25 @@ namespace BanVeXemPhimApi.Controllers.Admin
         }
 
         /// <summary>
+        /// get detail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("GetDetail")]
+        public IActionResult GetDetail(int id)
+        {
+            try
+            {
+                var res = _scheduleManagementService.GetDetail(id);
+                return Ok(new MessageData { Data = res });
+            }
+            catch (Exception ex)
+            {
+                return NG(ex);
+            }
+        }
+
+        /// <summary>
         /// Store schedule
         /// </summary>
         /// <param name="request"></param>
