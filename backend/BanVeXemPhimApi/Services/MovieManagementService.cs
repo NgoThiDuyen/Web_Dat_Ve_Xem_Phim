@@ -39,34 +39,18 @@ namespace BanVeXemPhimApi.Services
         /// <param name="limit"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public object GetMovies(int limit, int page)
+        public object GetMovies(int limit, int page, string? name)
         {
             try
             {
                 var query = this._movieRepository.FindAll();
-                query.Skip((page - 1) * limit).Take(limit);
-                var total = query.Count();
-                int tmpByInt = total / limit;
-                double tmpByDouble = (double)total / (double)limit;
-                int totalPage = 1;
-                if (tmpByDouble > (double)tmpByInt)
+
+                if (!string.IsNullOrEmpty(name))
                 {
-                    totalPage = tmpByInt + 1;
+                    query = query.Where(row => row.Name.ToLower().Contains(name.ToLower()));
                 }
-                else
-                {
-                    totalPage = tmpByInt;
-                }
-                query = query.Skip((page - 1) * limit).Take(limit);
-                var amount = query.Count();
-                return new
-                {
-                    data = query.ToList(),
-                    //Amount = amount,
-                    //PageSize = limit,
-                    TotalRecords  = total,
-                    TotalPages = totalPage,
-                };
+
+                return new Pagination<Movie>(query, limit, page);
             }
             catch(Exception ex)
             {
@@ -145,8 +129,6 @@ namespace BanVeXemPhimApi.Services
                 movieUpdate.Time = request.Time;
                 movieUpdate.ReleaseDate = request.ReleaseDate;
                 movieUpdate.Description = request.Description;
-                movieUpdate.NumberBooking = request.NumberBooking;
-                movieUpdate.NumberView = request.NumberView;
                 movieUpdate.UpdatedDate = DateTime.Now;
 
                 _movieRepository.UpdateByEntity(movieUpdate);

@@ -15,7 +15,5 @@ namespace BanVeXemPhimApi.Request
         public int Time { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
-        public int NumberBooking { get; set; }
-        public int NumberView { get; set; }
     }
 }
