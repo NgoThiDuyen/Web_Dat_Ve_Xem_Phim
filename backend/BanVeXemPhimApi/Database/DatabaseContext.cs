@@ -56,10 +56,6 @@ namespace BanVeXemPhimApi.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region User
-            new UserSeeder(modelBuilder).SeedData();
-            #endregion
-
             #region Movie
             new MovieSeeder(modelBuilder).SeedData();
             #endregion
