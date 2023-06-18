@@ -2,6 +2,7 @@ using AutoMapper;
 using BanVeXemPhimApi.Common;
 using BanVeXemPhimApi.Database;
 using BanVeXemPhimApi.Mapper;
+using BanVeXemPhimApi.SocketHelper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -108,10 +110,14 @@ namespace BanVeXemPhimApi
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            // set websocket
+            services.AddTransient<ConnectionManager>();
+            services.AddSingleton<ChatHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ChatHandler handler)
         {
             if (env.IsDevelopment())
             {
@@ -119,6 +125,15 @@ namespace BanVeXemPhimApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BanVeXemPhimApi v1"));
             }
+
+            // web socket
+            var webSocketOptions = new WebSocketOptions()
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+                ReceiveBufferSize = 4 * 1024
+            };
+            app.UseWebSockets(webSocketOptions);
+            app.UseMiddleware<WebSocketMiddlewareCustomer>(handler);
 
             app.UseCors();
 
