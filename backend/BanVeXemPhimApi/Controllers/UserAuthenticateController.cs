@@ -6,12 +6,17 @@ using BanVeXemPhimApi.Database;
 using BanVeXemPhimApi.Dto;
 using BanVeXemPhimApi.Request;
 using BanVeXemPhimApi.Services;
+using BanVeXemPhimApi.SocketHelper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Sockets;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
 
 namespace BanVeXemPhimApi.Controllers
 {
@@ -20,9 +25,11 @@ namespace BanVeXemPhimApi.Controllers
     public class UserAuthenticateController : BaseApiController<UserAuthenticateController>
     {
         private readonly UserAuthenticateService _userAuthenticateService;
-        public UserAuthenticateController(DatabaseContext databaseContext, IMapper mapper, ApiOption apiConfig)
+        private readonly ConnectionManager _connectionManager;
+        public UserAuthenticateController(DatabaseContext databaseContext, IMapper mapper, ApiOption apiConfig, ConnectionManager connectionManager)
         {
             _userAuthenticateService = new UserAuthenticateService(apiConfig, databaseContext, mapper);
+            _connectionManager = connectionManager;
         }
 
         /// <summary>
