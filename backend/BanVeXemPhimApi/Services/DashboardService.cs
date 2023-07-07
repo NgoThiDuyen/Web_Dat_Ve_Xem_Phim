@@ -29,6 +29,10 @@ namespace BanVeXemPhimApi.Services
         public DashboardService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper)
         {
             _cinemaRepository = new CinemaRepository(apiOption, databaseContext, mapper);
+            _adminRepository = new AdminRepository(apiOption, databaseContext, mapper);
+            _userRepository = new UserRepository(apiOption, databaseContext, mapper);
+            _orderTicketRepository = new OrderTicketRepository(apiOption, databaseContext, mapper);
+            _movieRepository = new MovieRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
         }
 

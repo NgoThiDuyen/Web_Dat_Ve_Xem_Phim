@@ -30,6 +30,7 @@ namespace BanVeXemPhimApi.Services
         public StatictisService(ApiOption apiOption, DatabaseContext databaseContext, IMapper mapper, IWebHostEnvironment webHost)
         {
             _userRepository = new UserRepository(apiOption, databaseContext, mapper);
+            _orderTicketRepository = new OrderTicketRepository(apiOption, databaseContext, mapper);
             _mapper = mapper;
             _webHost = webHost;
         }

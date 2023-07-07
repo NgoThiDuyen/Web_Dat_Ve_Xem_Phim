@@ -69,7 +69,7 @@ namespace BanVeXemPhimApi.Services
                     }
                 }
 
-                return new Pagination<GetScheduleDto>(getScheduleDtoList, paginationSchedule.TotalPages, paginationSchedule.TotalPages, limit, page);
+                return new Pagination<GetScheduleDto>(getScheduleDtoList, paginationSchedule.TotalPages, paginationSchedule.TotalRecords, limit, page);
             }
             catch(Exception ex)
             {
@@ -103,6 +103,10 @@ namespace BanVeXemPhimApi.Services
         {
             try
             {
+                if(request.PlaySchedule < DateTime.Now)
+                {
+                    throw new Exception("Play Schedule invalid!");
+                }
                 var movie = _movieRepository.FindOrFail(request.MovieId);
                 if (movie == null)
                 {
